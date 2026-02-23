@@ -1,0 +1,13 @@
+{
+    "name": "Nicholas' Code Editor",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#9fd2fb",
+    "icons": [
+        {
+            "src": "icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}

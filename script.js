@@ -36,13 +36,11 @@ function saveFile() {
     file.download = "index.html";
     document.getElementById("edit").appendChild(file);
     document.getElementById("fileDownload").click();
-    URL.revokeObjectURL(download);
 };
 
 function render() {
     let display = URL.createObjectURL(new Blob([document.getElementById("code").value], { type: "text/html" }));
     document.getElementById("renderer").src = display;
-    URL.revokeObjectURL(display);
 };
 
 function check(buttonInput, action) {
@@ -95,4 +93,5 @@ window.addEventListener("beforeunload", function(e) {
 
 document.getElementById("code").addEventListener("input", function(e) {
     dirty = true;
+
 })

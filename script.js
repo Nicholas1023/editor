@@ -9,9 +9,12 @@ let template = `<!DOCTYPE html>
   </body>
 </html>`;
 
+let dirty = false;
+
 document.getElementById("code").value = template;
 
 document.getElementById("fileSelect").addEventListener("change", function(e) {
+    dirty = false;
     list = e.target
     file = e.target.files[0];
     const read = new FileReader();
@@ -24,7 +27,8 @@ document.getElementById("fileSelect").addEventListener("change", function(e) {
 });
 
 function saveFile() {
-    const download = URL.createObjectURL(new Blob([document.getElementById("code").value], { type: "text/html" }));
+    dirty = false;
+    let download = URL.createObjectURL(new Blob([document.getElementById("code").value], { type: "text/html" }));
     const file = document.createElement("a")
     file.style.display = "none";
     file.href = download;
@@ -36,26 +40,22 @@ function saveFile() {
 };
 
 function render() {
-    const display = URL.createObjectURL(new Blob([document.getElementById("code").value], { type: "text/html" }));
+    let display = URL.createObjectURL(new Blob([document.getElementById("code").value], { type: "text/html" }));
     document.getElementById("renderer").src = display;
     URL.revokeObjectURL(display);
 };
 
-function clearCode() {
-    let confirmClear = window.confirm("Are you sure about clearing the editor?");
-    if (confirmClear == true) {
+function check(buttonInput, action) {
+    if (buttonInput == true && action == "clear") {
         document.getElementById("code").value = "";
         render();
-    }
-}
-
-function addTemplate() {
-    let confirmClear = window.confirm("Adding the template clears the editor. Are you sure about clearing the editor?");
-    if (confirmClear == true) {
+    } else if (buttonInput == true && action == "template") {
         document.getElementById("code").value = template;
         render();
     };
-};
+    document.getElementById("clear").style.display = "none";
+    document.getElementById("template").style.display = "none";
+}
 
 document.getElementById("code").addEventListener("keydown", function(e) {
     if (e.key == "Tab") {
@@ -84,4 +84,15 @@ if (navigator.userAgent) {
     document.getElementById("userAgent").textContent = `User agent: ${navigator.userAgent}`;
 } else {
     document.getElementById("userAgent").textContent = "User agent data not available.";
-}
+};
+
+window.addEventListener("beforeunload", function(e) {
+    if (dirty) {
+        e.preventDefault();
+        e.returnValue = "";
+    }
+});
+
+document.getElementById("code").addEventListener("input", function(e) {
+    dirty = true;
+})

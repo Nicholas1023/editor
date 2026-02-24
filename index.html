@@ -16,12 +16,24 @@
                     <input type="file" accept="text/html" style="display: none;" id="fileSelect">
                     <button onclick="document.getElementById('fileSelect').click()">Open file ^O</button>
                     <button onclick="saveFile()">Save file ^S</button>
-                    <button onclick="clearCode()">Clear code</button>
-                    <button onclick="addTemplate()">Add template</button>
+                    <button onclick="document.getElementById('clear').style.display = 'flex'">Clear code</button>
+                    <button onclick="document.getElementById('template').style.display = 'flex'">Add template</button>
                 </div>
                 <button onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
             </div>
         </nav>
+        <div style="width: 100dvw; display: flex; justify-content: center;">
+            <div id="clear" class="message">
+                <p>Are you sure about clearing the editor?</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="check(true, 'clear')">Yes</button>
+                <button style="padding: 5px 15px;" onclick="check(false, 'clear')">No</button>
+            </div>
+            <div id="template" class="message">
+                <p>Adding the template clears the editor. Are you sure about clearing the editor?</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="check(true, 'template')">Yes</button>
+                <button style="padding: 5px 15px;" onclick="check(false, 'template')">No</button>
+            </div>
+        </div>
         <div class="edit" id="edit">
             <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
             <iframe id="renderer"></iframe>
@@ -30,7 +42,7 @@
             <p id="userAgent"></p>
             <a href="https://github.com/Nicholas1023/editor" target="_blank" style="padding-left: 5px;">View repository</a>
             <p>&copy; 2026 Nicholas Lim. <a href="LICENSE.txt" target="_blank">View license</a>.</p>
-            <p>Version 0.0.1 (Beta)</p>
+            <p>Version 0.0.2 (Beta)</p>
         </footer>
         <script src="script.js"></script>
     </body>

@@ -11,6 +11,10 @@ code {
 html, body {
   scroll-behavior: smooth;
   background-color: #9fd2fb;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 nav {
@@ -18,14 +22,13 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: #9fd2fb;
-    height: 8dvh;
 }
 
 nav * {
     padding: 5px;
 }
 
-button {
+button, .button {
     cursor: pointer;
     padding: 5px 10px;
     background-color: #008afb;
@@ -36,7 +39,7 @@ button {
     border: none;
 }
 
-button:hover {
+button:hover, .button:hover {
     text-decoration: none;
     color: white;
     background-color: #005ca8;
@@ -46,9 +49,6 @@ button:hover {
     width: 50dvw;
     min-width: 50dvw;
     max-width: 50dvw;
-    height: 87dvh;
-    min-height: 87dvh;
-    max-height: 87dvh;
     font-family: monospace;
     color: white;
     background-color: #00002d;
@@ -60,7 +60,6 @@ button:hover {
 
 #renderer {
     width: 50dvw;
-    height: 87dvh;
     background-color: white;
     padding: 0;
     border: none;
@@ -69,6 +68,7 @@ button:hover {
 .edit {
     display: flex;
     border: none;
+    flex-grow: 1;
 }
 
 .menu {
@@ -95,6 +95,19 @@ button:hover {
 
 .message * {
     padding: 5px;
+}
+
+.errorpage {
+    display: flex;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    background-color: #d1e9fd;
+    width: 100dvw;
 }
 
 ::-webkit-scrollbar {

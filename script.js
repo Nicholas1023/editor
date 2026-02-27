@@ -11,6 +11,7 @@ let template = `<!DOCTYPE html>
 
 let dirty = false;
 let shareURL = "";
+let codeBase64 = "";
 
 document.getElementById("code").value = template;
 
@@ -103,10 +104,30 @@ function generateShareURL() {
     const encoder = new TextEncoder("UTF-8");
     let codeBase64 = btoa(String.fromCharCode(...encoder.encode(document.getElementById("code").value))).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
     shareURL = `https://editor.nicholaslim.me/share/?code=${codeBase64}`;
+    document.getElementById("copy").textContent = "Copy full URL";
+    document.getElementById("copy").onclick = copyURL;
+    document.getElementById("generate").textContent = "Generate embed code";
+    document.getElementById("generate").onclick = embed;
     document.getElementById("shareContent").innerHTML = `Sharing URL: <code>https://editor.nicholaslim.me/share/?code=${codeBase64.slice(0, 15)}...</code>`;
+    document.getElementById("copiedMessage").style.display = "none";
     document.getElementById("share").style.display = "flex";
 };
 
 function copyURL() {
     navigator.clipboard.writeText(shareURL);
+    document.getElementById("copiedMessage").style.display = "block";
+};
+
+function copyHTML() {
+    navigator.clipboard.writeText(`<iframe src="${shareURL}" width="649" height="350"></iframe>`);
+    document.getElementById("copiedMessage").style.display = "block";
+};
+
+function embed() {
+    document.getElementById("shareContent").innerHTML = `Embed code: <code>&lt;iframe src="https://editor.nicholaslim.me/share/..." width="649" height="350"&gt;&lt;/iframe&gt;</code>`;
+    document.getElementById("copy").textContent = "Copy full code";
+    document.getElementById("copy").onclick = copyHTML;
+    document.getElementById("generate").textContent = "Generate sharing URL";
+    document.getElementById("generate").onclick = generateShareURL;
+    document.getElementById("copiedMessage").style.display = "none";
 };

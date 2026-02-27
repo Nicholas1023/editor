@@ -40,8 +40,10 @@
             </div>
             <div id="share" class="message">
                 <p id="shareContent"></p>
-                <button style="padding: 5px 15px; margin: 0 10px;" onclick="copyURL()">Copy full URL</button>
-                <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = 'none'">OK</button>
+                <p id="copiedMessage" style="display: none; color: green;">Copied!</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" id="copy" onclick="copyURL()"></button>
+                <button style="padding: 5px 15px; margin-right: 10px;" id="generate" onclick="embed()"></button>
+                <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = document.getElementById('copiedMessage').style.display = 'none'">OK</button>
             </div>
         </div>
         <div class="edit" id="edit">

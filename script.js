@@ -10,6 +10,7 @@ let template = `<!DOCTYPE html>
 </html>`;
 
 let dirty = false;
+let shareURL = "";
 
 document.getElementById("code").value = template;
 
@@ -99,3 +100,14 @@ document.getElementById("code").addEventListener("input", function(e) {
 
 })
 
+function generateShareURL() {
+    const encoder = new TextEncoder("UTF-8");
+    let codeBase64 = btoa(String.fromCharCode(...encoder.encode(document.getElementById("code").value))).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+    shareURL = `https://editor.nicholaslim.me/share/?code=${codeBase64}`;
+    document.getElementById("shareContent").innerHTML = `Sharing URL: <code>https://editor.nicholaslim.me/share/?code=${codeBase64.slice(0, 15)}...</code>`;
+    document.getElementById("share").style.display = "flex";
+}
+
+function copyURL() {
+    navigator.clipboard.writeText(shareURL);
+}

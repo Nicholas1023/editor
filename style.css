@@ -110,6 +110,20 @@ button:hover, .button:hover {
     width: 100dvw;
 }
 
+code {
+    background-color: #d7d7d7;
+    border-radius: 5px;
+}
+
+.nav-url {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-url:hover {
+    color: #2a2a9c;
+}
+
 ::-webkit-scrollbar {
     background-color: rgba(0, 0, 0, 0);
     width: 15px;

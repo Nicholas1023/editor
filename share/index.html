@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="application-name" content="Nicholas' Code Editor" lang="en">
+        <meta name="theme-color" content="#9fd2fb">
+        <title>Nicholas' Code Editor</title>
+        <link rel="stylesheet" href="/style.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" href="/icon.png">
+    </head>
+    <body>
+        <nav>
+            <h2 style="margin-left: 5px;"><a href="/" class="nav-url">Nicholas' Code Editor</a></h2>
+            <div class="menu" style="justify-content: flex-end;">
+                <div>
+                    <button onclick="window.location.replace('/index.html')">Go to editor</button>
+                    <button onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
+                </div>
+            </div>
+        </nav>
+        <div class="edit" id="edit">
+            <textarea id="code" spellcheck="false" readonly></textarea>
+            <iframe id="renderer"></iframe>
+        </div>
+        <footer style="display: flex; padding: 5px 10px; font-size: small; justify-content: flex-end; bottom: 0;">
+            <a href="https://github.com/Nicholas1023/editor" target="_blank" style="padding-right: 20px;">View repository</a>
+            <p style="padding-right: 20px;">&copy; 2026 Nicholas Lim. <a href="LICENSE.txt" target="_blank">View license</a>.</p>
+            <p>Version 0.0.4 (Beta)</p>
+        </footer>
+        <script src="script.js"></script>
+    </body>
+</html>

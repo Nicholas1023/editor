@@ -21,7 +21,10 @@
                     <button onclick="document.getElementById('clear').style.display = 'flex'">Clear code</button>
                     <button onclick="document.getElementById('template').style.display = 'flex'">Add template</button>
                 </div>
-                <button onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
+                <div>
+                    <button onclick="generateShareURL()">Share code</button>
+                    <button onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
+                </div>
             </div>
         </nav>
         <div style="width: 100dvw; display: flex; justify-content: center;">
@@ -35,6 +38,11 @@
                 <button style="padding: 5px 15px; margin: 0 10px;" onclick="check(true, 'template')">Yes</button>
                 <button style="padding: 5px 15px;" onclick="check(false, 'template')">No</button>
             </div>
+            <div id="share" class="message">
+                <p id="shareContent"></p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="copyURL()">Copy full URL</button>
+                <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = 'none'">OK</button>
+            </div>
         </div>
         <div class="edit" id="edit">
             <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
@@ -44,7 +52,7 @@
             <p id="userAgent"></p>
             <a href="https://github.com/Nicholas1023/editor" target="_blank" style="padding-left: 5px;">View repository</a>
             <p>&copy; 2026 Nicholas Lim. <a href="LICENSE.txt" target="_blank">View license</a>.</p>
-            <p>Version 0.0.3 (Beta)</p>
+            <p>Version 0.0.4 (Beta)</p>
         </footer>
         <script src="script.js"></script>
     </body>

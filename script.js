@@ -97,8 +97,7 @@ window.addEventListener("beforeunload", function(e) {
 
 document.getElementById("code").addEventListener("input", function(e) {
     dirty = true;
-
-})
+});
 
 function generateShareURL() {
     const encoder = new TextEncoder("UTF-8");
@@ -106,8 +105,8 @@ function generateShareURL() {
     shareURL = `https://editor.nicholaslim.me/share/?code=${codeBase64}`;
     document.getElementById("shareContent").innerHTML = `Sharing URL: <code>https://editor.nicholaslim.me/share/?code=${codeBase64.slice(0, 15)}...</code>`;
     document.getElementById("share").style.display = "flex";
-}
+};
 
 function copyURL() {
     navigator.clipboard.writeText(shareURL);
-}
+};

@@ -9,9 +9,8 @@
         <link rel="stylesheet" href="style.css">
         <link rel="manifest" href="manifest.json">
         <link rel="icon" href="icon.png">
-    </head>
     <body>
-        <nav>
+        <nav id="nav">
             <h2 style="margin-left: 5px;">Nicholas' Code Editor</h2>
             <div class="menu">
                 <div>
@@ -23,6 +22,7 @@
                 </div>
                 <div>
                     <button onclick="generateShareURL()">Share/Embed</button>
+                    <button id="themeButton" onclick="changeTheme()"></button>
                     <button onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
                 </div>
             </div>
@@ -50,10 +50,10 @@
             <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
             <iframe id="renderer"></iframe>
         </div>
-        <footer style="display: flex; padding: 5px 10px; font-size: small; justify-content: space-between; bottom: 0;">
+        <footer id="footer" style="display: flex; padding: 5px 10px; font-size: small; justify-content: space-between; bottom: 0;">
             <p id="userAgent"></p>
-            <a href="https://github.com/Nicholas1023/editor" target="_blank" style="padding-left: 5px;">View repository</a>
-            <p>&copy; 2026 Nicholas Lim. <a href="LICENSE.txt" target="_blank">View license</a>.</p>
+            <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank" style="padding-left: 5px;">View repository</a>
+            <p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
             <p>Version 0.0.4 (Beta)</p>
         </footer>
         <script src="script.js"></script>

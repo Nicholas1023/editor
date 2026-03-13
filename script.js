@@ -13,6 +13,23 @@ let dirty = false;
 let shareURL = "";
 let codeBase64 = "";
 
+if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.getItem("theme") == "dark") {
+    theme("systemdark");
+} else if (window.matchMedia("(prefers-color-scheme: light").matches && localStorage.getItem("theme") == "light") {
+    theme("systemlight");
+} else if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.getItem("theme") == "light") {
+    theme("light");
+} else if (window.matchMedia("(prefers-color-scheme: light").matches && localStorage.getItem("theme") == "dark") {
+    theme("dark");
+} else if (localStorage.getItem("theme") == "dark") {
+    theme("dark");
+} else if (localStorage.getItem("theme") == "light") {
+    theme("light");
+} else {
+    theme("light");
+    localStorage.setItem("theme", "light");
+};
+
 document.getElementById("code").value = template;
 
 document.getElementById("fileSelect").addEventListener("change", function(e) {
@@ -130,4 +147,40 @@ function embed() {
     document.getElementById("generate").textContent = "Generate sharing URL";
     document.getElementById("generate").onclick = generateShareURL;
     document.getElementById("copiedMessage").style.display = "none";
+};
+
+function theme(theme) {
+    if (theme == "dark" || theme == "systemdark") {
+        document.getElementById("nav").style.backgroundColor = "#01294d";
+        document.getElementById("footer").style.backgroundColor = "#01294d";
+        document.getElementById("nav").style.color = "white";
+        document.getElementById("footer").style.color = "white";
+        document.getElementById("themeButton").textContent = "Light Mode";
+        document.querySelectorAll(".footer-a").forEach(function(a) {
+            a.style.color = "#9fd2fb";
+        });
+    } else if (theme == "light" || theme == "systemlight") {
+        localStorage.setItem("theme", "light");
+        document.getElementById("nav").style.backgroundColor = "#9fd2fb";
+        document.getElementById("footer").style.backgroundColor = "#9fd2fb";
+        document.getElementById("nav").style.color = "black";
+        document.getElementById("footer").style.color = "black";
+        document.getElementById("themeButton").textContent = "Dark Mode";
+        document.querySelectorAll(".footer-a").forEach(function(a) {
+            a.style.color = "#0000a0";
+        });
+    };
+    if (theme == "dark") {
+        localStorage.setItem("theme", "dark");
+    } else if (theme == "light") {
+        localStorage.setItem("theme", "light");
+    };
+};
+
+function changeTheme() {
+    if (localStorage.getItem("theme") == "dark") {
+        theme("light");
+    } else if (localStorage.getItem("theme") == "light") {
+        theme("dark");
+    };
 };

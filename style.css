@@ -47,8 +47,7 @@ button:hover, .button:hover {
 
 #code {
     width: 50dvw;
-    min-width: 50dvw;
-    max-width: 50dvw;
+    resize: none;
     font-family: monospace;
     color: white;
     background-color: #00002d;

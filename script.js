@@ -192,7 +192,6 @@ function disallowCookies() {
     document.getElementById("cookies").style.display = "none";
     localStorage.removeItem("theme");
     localStorage.removeItem("cookies");
-    window.location.reload();
 };
 
 function allowCookies() {

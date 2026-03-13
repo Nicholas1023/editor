@@ -39,8 +39,8 @@
                 <button style="padding: 5px 15px;" onclick="check(false, 'template')">No</button>
             </div>
             <div id="share" class="message">
-                <p id="shareContent"></p>
-                <p id="copiedMessage" style="display: none; color: green;">Copied!</p>
+                <p id="shareContent"><code id="shareCode"></code></p>
+                <p id="copiedMessage" style="display: none; color: #009b00;">Copied!</p>
                 <button style="padding: 5px 15px; margin: 0 10px;" id="copy" onclick="copyURL()"></button>
                 <button style="padding: 5px 15px; margin-right: 10px;" id="generate" onclick="embed()"></button>
                 <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = document.getElementById('copiedMessage').style.display = 'none'">OK</button>

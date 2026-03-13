@@ -91,6 +91,8 @@ button:hover, .button:hover {
     margin-top: 5px;
 }
 
+.message code { color: black; }
+
 .message-cookies { display: flex; }
 
 .message { display: none; }

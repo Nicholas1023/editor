@@ -128,7 +128,7 @@ function generateShareURL() {
     document.getElementById("copy").onclick = copyURL;
     document.getElementById("generate").textContent = "Generate embed code";
     document.getElementById("generate").onclick = embed;
-    document.getElementById("shareContent").innerHTML = `Sharing URL: <code>https://editor.nicholaslim.me/share/?code=${codeBase64.slice(0, 15)}...</code>`;
+    document.getElementById("shareContent").innerHTML = `Sharing URL: <code id="shareCode" class="code">https://editor.nicholaslim.me/share/?code=${codeBase64.slice(0, 15)}...</code>`;
     document.getElementById("copiedMessage").style.display = "none";
     document.getElementById("share").style.display = "flex";
 };
@@ -144,7 +144,7 @@ function copyHTML() {
 };
 
 function embed() {
-    document.getElementById("shareContent").innerHTML = `Embed code: <code>&lt;iframe src="https://editor.nicholaslim.me/share/..." width="649" height="350"&gt;&lt;/iframe&gt;</code>`;
+    document.getElementById("shareContent").innerHTML = `Embed code: <code id="shareCode" class="code">&lt;iframe src="https://editor.nicholaslim.me/share/..." width="649" height="350"&gt;&lt;/iframe&gt;</code>`;
     document.getElementById("copy").textContent = "Copy full code";
     document.getElementById("copy").onclick = copyHTML;
     document.getElementById("generate").textContent = "Generate sharing URL";
@@ -213,3 +213,5 @@ function allowCookies() {
     document.getElementById("cookies").style.display = "none";
     window.location.reload();
 };
+
+console.log(document.getElementById("shareCode"));

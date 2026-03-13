@@ -152,29 +152,41 @@ function embed() {
     document.getElementById("copiedMessage").style.display = "none";
 };
 
-function theme(theme) {
+function theme(theme, cookies) {
     if (theme == "dark" || theme == "systemdark") {
         document.getElementById("nav").style.backgroundColor = "#01294d";
         document.getElementById("footer").style.backgroundColor = "#01294d";
+        document.getElementById("cookies").style.backgroundColor = "#01294d";
         document.getElementById("nav").style.color = "white";
         document.getElementById("footer").style.color = "white";
+        document.getElementById("cookies").style.color = "white";
         document.getElementById("themeButton").textContent = "Light Mode";
         document.querySelectorAll(".footer-a").forEach(function(a) {
             a.style.color = "#9fd2fb";
         });
+        document.querySelectorAll(".message").forEach(function(m) {
+            m.style.backgroundColor = "#01294d";
+            m.style.color = "white";
+        });
     } else if (theme == "light" || theme == "systemlight") {
         document.getElementById("nav").style.backgroundColor = "#9fd2fb";
         document.getElementById("footer").style.backgroundColor = "#9fd2fb";
+        document.getElementById("cookies").style.backgroundColor = "#9fd2fb";
         document.getElementById("nav").style.color = "black";
         document.getElementById("footer").style.color = "black";
+        document.getElementById("cookies").style.color = "black";
         document.getElementById("themeButton").textContent = "Dark Mode";
         document.querySelectorAll(".footer-a").forEach(function(a) {
             a.style.color = "#0000a0";
         });
+        document.querySelectorAll(".message").forEach(function(m) {
+            m.style.backgroundColor = "#9fd2fb";
+            m.style.color = "black";
+        });
     };
-    if (theme == "dark" && localStorage.getItem("cookies")) {
+    if (theme == "dark" && localStorage.getItem("cookies") && cookies != false) {
         localStorage.setItem("theme", "dark");
-    } else if (theme == "light" && localStorage.getItem("cookies")) {
+    } else if (theme == "light" && localStorage.getItem("cookies") && cookies != false) {
         localStorage.setItem("theme", "light");
     };
 };
@@ -192,6 +204,7 @@ function disallowCookies() {
     document.getElementById("cookies").style.display = "none";
     localStorage.removeItem("theme");
     localStorage.removeItem("cookies");
+    theme("light", false);
 };
 
 function allowCookies() {

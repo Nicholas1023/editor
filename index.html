@@ -15,15 +15,15 @@
             <div class="menu">
                 <div>
                     <input type="file" accept="text/html" style="display: none;" id="fileSelect">
-                    <button onclick="document.getElementById('fileSelect').click()">Open file ^O</button>
-                    <button onclick="saveFile()">Save file ^S</button>
-                    <button onclick="document.getElementById('clear').style.display = 'flex'">Clear code</button>
-                    <button onclick="document.getElementById('template').style.display = 'flex'">Add template</button>
+                    <button id="openFile" onclick="document.getElementById('fileSelect').click()">Open file ^O</button>
+                    <button id="saveFile" onclick="saveFile()">Save file ^S</button>
+                    <button id="clearCode" onclick="document.getElementById('clear').style.display = 'flex'">Clear code</button>
+                    <button id="addTemplate" onclick="document.getElementById('template').style.display = 'flex'">Add template</button>
                 </div>
                 <div>
-                    <button onclick="generateShareURL()">Share/Embed</button>
+                    <button id="shareEmbed" onclick="generateShareURL()">Share/Embed</button>
                     <button id="themeButton" onclick="changeTheme()"></button>
-                    <button onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
+                    <button id="renderHTML" onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
                 </div>
             </div>
         </nav>
@@ -50,6 +50,10 @@
                 <button style="padding: 5px 15px; margin: 0 10px;" onclick="allowCookies()">I accept</button>
                 <button style="padding: 5px 15px;" onclick="disallowCookies()">Do not use cookies</button>
             </div>
+            <div id="mobile" class="message">
+                <p>Mobile devices currently have limited features. Visit on a destop for full experience.</p>
+                <button style="padding: 5px 15px;" onclick="document.getElementById('mobile').style.display = 'none'">OK</button>
+            </div>
         </div>
         <div class="edit" id="edit">
             <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
@@ -57,11 +61,11 @@
         </div>
         <footer id="footer" style="flex-direction: column; display: flex; padding: 5px 10px; font-size: small; bottom: 0; text-align: center;">
             <p id="userAgent"></p>
-            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div id="footerContent" style="display: flex; flex-direction: row; justify-content: space-between;">
                 <p>Copyright &copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
                 <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
                 <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
-                <p>Version 0.0.6 (Beta)</p>
+                <p>Version 0.0.7</p>
             </div>
         </footer>
         <script src="script.js"></script>

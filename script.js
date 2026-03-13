@@ -154,11 +154,11 @@ function embed() {
 
 function theme(theme, cookies) {
     if (theme == "dark" || theme == "systemdark") {
-        document.getElementById("nav").style.backgroundColor = "#01294d";
-        document.getElementById("footer").style.backgroundColor = "#01294d";
+        document.getElementById("nav").style.backgroundColor =
+        document.getElementById("footer").style.backgroundColor =
         document.getElementById("cookies").style.backgroundColor = "#01294d";
-        document.getElementById("nav").style.color = "white";
-        document.getElementById("footer").style.color = "white";
+        document.getElementById("nav").style.color =
+        document.getElementById("footer").style.color =
         document.getElementById("cookies").style.color = "white";
         document.getElementById("themeButton").textContent = "Light Mode";
         document.querySelectorAll(".footer-a").forEach(function(a) {
@@ -169,11 +169,11 @@ function theme(theme, cookies) {
             m.style.color = "white";
         });
     } else if (theme == "light" || theme == "systemlight") {
-        document.getElementById("nav").style.backgroundColor = "#9fd2fb";
-        document.getElementById("footer").style.backgroundColor = "#9fd2fb";
+        document.getElementById("nav").style.backgroundColor =
+        document.getElementById("footer").style.backgroundColor =
         document.getElementById("cookies").style.backgroundColor = "#9fd2fb";
-        document.getElementById("nav").style.color = "black";
-        document.getElementById("footer").style.color = "black";
+        document.getElementById("nav").style.color =
+        document.getElementById("footer").style.color =
         document.getElementById("cookies").style.color = "black";
         document.getElementById("themeButton").textContent = "Dark Mode";
         document.querySelectorAll(".footer-a").forEach(function(a) {
@@ -213,3 +213,22 @@ function allowCookies() {
     document.getElementById("cookies").style.display = "none";
     window.location.reload();
 };
+
+if (window.screen.width < 600) {
+    localStorage.removeItem("theme");
+    localStorage.removeItem("cookies");
+    document.getElementById("mobile").style.display = "flex"; 
+    document.getElementById("cookies").style.display =
+    document.getElementById("openFile").style.display =
+    document.getElementById("saveFile").style.display =
+    document.getElementById("clearCode").style.display =
+    document.getElementById("addTemplate").style.display =
+    document.getElementById("shareEmbed").style.display =
+    document.getElementById("themeButton").style.display =
+    document.getElementById("userAgent").style.display = "none";
+    document.getElementById("renderHTML").textContent = "Render HTML";
+    document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
+    <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
+    <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
+    <p>v0.0.7</p>`
+}

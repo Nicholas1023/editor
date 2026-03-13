@@ -213,5 +213,3 @@ function allowCookies() {
     document.getElementById("cookies").style.display = "none";
     window.location.reload();
 };
-
-console.log(document.getElementById("shareCode"));

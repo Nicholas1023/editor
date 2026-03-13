@@ -78,8 +78,7 @@ button:hover, .button:hover {
     flex: 1;
 }
 
-.message {
-    display: none;
+.message, .message-cookies {
     flex: 1;
     z-index: 1000;
     position: fixed;
@@ -92,9 +91,11 @@ button:hover, .button:hover {
     margin-top: 5px;
 }
 
-.message * {
-    padding: 5px;
-}
+.message-cookies { display: flex; }
+
+.message { display: none; }
+
+.message *, .message-cookies * { padding: 5px; }
 
 .errorpage {
     display: flex;
@@ -107,6 +108,13 @@ button:hover, .button:hover {
     flex-grow: 1;
     background-color: #d1e9fd;
     width: 100dvw;
+}
+
+#cookies-a {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 0;
+    text-decoration: underline;
 }
 
 code {

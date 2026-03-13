@@ -45,16 +45,24 @@
                 <button style="padding: 5px 15px; margin-right: 10px;" id="generate" onclick="embed()"></button>
                 <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = document.getElementById('copiedMessage').style.display = 'none'">OK</button>
             </div>
+            <div id="cookies" class="message-cookies">
+                <p><b>Notice:</b>We use cookies to store your theme (dark/light) preference.</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="allowCookies()">I accept</button>
+                <button style="padding: 5px 15px;" onclick="disallowCookies()">Do not use cookies</button>
+            </div>
         </div>
         <div class="edit" id="edit">
             <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
             <iframe id="renderer"></iframe>
         </div>
-        <footer id="footer" style="display: flex; padding: 5px 10px; font-size: small; justify-content: space-between; bottom: 0;">
+        <footer id="footer" style="flex-direction: column; display: flex; padding: 5px 10px; font-size: small; bottom: 0; text-align: center;">
             <p id="userAgent"></p>
-            <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank" style="padding-left: 5px;">View repository</a>
-            <p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
-            <p>Version 0.0.5 (Beta)</p>
+            <div style="display: flex; flex-direction: row; justify-content: space-evenly;">
+                <p>Copyright &copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
+                <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View repository</a>
+                <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
+                <p>Version 0.0.6 (Beta)</p>
+            </div>
         </footer>
         <script src="script.js"></script>
     </body>

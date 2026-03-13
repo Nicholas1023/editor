@@ -13,6 +13,10 @@ let dirty = false;
 let shareURL = "";
 let codeBase64 = "";
 
+if (localStorage.getItem("cookies")) {
+    document.getElementById("cookies").style.display = "none";
+};
+
 if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.getItem("theme") == "dark") {
     theme("systemdark");
 } else if (window.matchMedia("(prefers-color-scheme: light").matches && localStorage.getItem("theme") == "light") {
@@ -27,7 +31,6 @@ if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.get
     theme("light");
 } else {
     theme("light");
-    localStorage.setItem("theme", "light");
 };
 
 document.getElementById("code").value = template;
@@ -160,7 +163,6 @@ function theme(theme) {
             a.style.color = "#9fd2fb";
         });
     } else if (theme == "light" || theme == "systemlight") {
-        localStorage.setItem("theme", "light");
         document.getElementById("nav").style.backgroundColor = "#9fd2fb";
         document.getElementById("footer").style.backgroundColor = "#9fd2fb";
         document.getElementById("nav").style.color = "black";
@@ -170,9 +172,9 @@ function theme(theme) {
             a.style.color = "#0000a0";
         });
     };
-    if (theme == "dark") {
+    if (theme == "dark" && localStorage.getItem("cookies")) {
         localStorage.setItem("theme", "dark");
-    } else if (theme == "light") {
+    } else if (theme == "light" && localStorage.getItem("cookies")) {
         localStorage.setItem("theme", "light");
     };
 };
@@ -183,4 +185,19 @@ function changeTheme() {
     } else if (localStorage.getItem("theme") == "light") {
         theme("dark");
     };
+};
+
+function disallowCookies() {
+    document.getElementById("themeButton").style.display = "none";
+    document.getElementById("cookies").style.display = "none";
+    localStorage.removeItem("theme");
+    localStorage.removeItem("cookies");
+    window.location.reload();
+};
+
+function allowCookies() {
+    localStorage.setItem("cookies", true);
+    document.getElementById("themeButton").style.display = "inline";
+    document.getElementById("cookies").style.display = "none";
+    window.location.reload();
 };

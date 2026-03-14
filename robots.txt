@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /share/*
+Disallow: /404.html
+Disallow: /404

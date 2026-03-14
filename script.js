@@ -217,6 +217,7 @@ function allowCookies() {
 if (window.screen.width < 600) {
     localStorage.removeItem("theme");
     localStorage.removeItem("cookies");
+    document.getElementById("nav").style.justifyContent = "flex-start"; 
     document.getElementById("mobile").style.display = "flex"; 
     document.getElementById("cookies").style.display =
     document.getElementById("openFile").style.display =
@@ -225,11 +226,9 @@ if (window.screen.width < 600) {
     document.getElementById("addTemplate").style.display =
     document.getElementById("shareEmbed").style.display =
     document.getElementById("themeButton").style.display =
-    document.getElementById("cookies-a").style.display =
     document.getElementById("userAgent").style.display = "none";
     document.getElementById("renderHTML").textContent = "Render HTML";
     document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
     <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
-    <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
     <p>v0.0.7</p>`
 }

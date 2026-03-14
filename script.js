@@ -225,6 +225,7 @@ if (window.screen.width < 600) {
     document.getElementById("addTemplate").style.display =
     document.getElementById("shareEmbed").style.display =
     document.getElementById("themeButton").style.display =
+    document.getElementById("cookies-a").style.display =
     document.getElementById("userAgent").style.display = "none";
     document.getElementById("renderHTML").textContent = "Render HTML";
     document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>

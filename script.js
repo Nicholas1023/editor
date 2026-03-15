@@ -55,7 +55,7 @@ function saveFile() {
     file.style.display = "none";
     file.href = download;
     file.id = "fileDownload";
-    file.download = "index.html";
+    file.download = "file.html";
     document.getElementById("edit").appendChild(file);
     document.getElementById("fileDownload").click();
     document.getElementById("edit").removeChild(file);

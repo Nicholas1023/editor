@@ -21,9 +21,9 @@
                     <button id="addTemplate" onclick="document.getElementById('template').style.display = 'flex'">Add template</button>
                 </div>
                 <div>
-                    <button id="shareEmbed" onclick="generateShareURL()">Share/Embed</button>
+                    <button id="shareEmbed" onclick="generateShareURL()">Share/Embed (Short codes)</button>
                     <button id="themeButton" onclick="changeTheme()"></button>
-                    <button id="renderHTML" onclick="render()" style="margin-right: 5px;">Render HTML ^H</button>
+                    <button id="renderHTML" onclick="render()">Render HTML ^H</button>
                 </div>
             </div>
         </nav>
@@ -39,7 +39,7 @@
                 <button style="padding: 5px 15px;" onclick="check(false, 'template')">No</button>
             </div>
             <div id="share" class="message">
-                <p id="shareContent"><code id="shareCode"></code></p>
+                <div id="shareContent" style="display: flex; align-items: center;"><code id="shareCode"></code></div>
                 <p id="copiedMessage" style="display: none; color: #009b00;">Copied!</p>
                 <button style="padding: 5px 15px; margin: 0 10px;" id="copy" onclick="copyURL()"></button>
                 <button style="padding: 5px 15px; margin-right: 10px;" id="generate" onclick="embed()"></button>
@@ -51,7 +51,7 @@
                 <button style="padding: 5px 15px;" onclick="disallowCookies()">Do not use cookies &#128683;</button>
             </div>
             <div id="mobile" class="message">
-                <p>Mobile devices currently have limited features. Visit on a desktop for more features.</p>
+                <p>Mobile devices currently have limited features. For full experience, please use a desktop.</p>
                 <button style="padding: 5px 15px;" onclick="document.getElementById('mobile').style.display = 'none'">OK</button>
             </div>
         </div>
@@ -59,13 +59,13 @@
             <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
             <iframe id="renderer"></iframe>
         </div>
-        <footer id="footer" style="flex-direction: column; display: flex; padding: 5px 10px; font-size: small; bottom: 0; text-align: center;">
+        <footer id="footer" style="flex-direction: column; display: flex; padding: 5px 10px; font-size: small; bottom: 0; text-align: start;">
             <p id="userAgent"></p>
             <div id="footerContent" style="display: flex; flex-direction: row; justify-content: space-between;">
                 <p>Copyright &copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
                 <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
                 <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
-                <p>Version 0.0.7</p>
+                <p>Version 0.0.8</p>
             </div>
         </footer>
         <script src="script.js"></script>

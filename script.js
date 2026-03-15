@@ -128,7 +128,7 @@ function generateShareURL() {
     document.getElementById("copy").onclick = copyURL;
     document.getElementById("generate").textContent = "Generate embed code";
     document.getElementById("generate").onclick = embed;
-    document.getElementById("shareContent").innerHTML = `Sharing URL: <code id="shareCode" class="code">https://editor.nicholaslim.me/share/?code=${codeBase64.slice(0, 15)}...</code>`;
+    document.getElementById("shareContent").innerHTML = `<p>Sharing URL: </p><code id="shareCode">https://editor.nicholaslim.me/share/?code=${codeBase64}</code>`;
     document.getElementById("copiedMessage").style.display = "none";
     document.getElementById("share").style.display = "flex";
 };
@@ -139,12 +139,12 @@ function copyURL() {
 };
 
 function copyHTML() {
-    navigator.clipboard.writeText(`<iframe src="${shareURL}" width="649" height="350"></iframe>`);
+    navigator.clipboard.writeText(`<iframe src="${shareURL}" title="Nicholas' Code Editor" width="649" height="350"></iframe>`);
     document.getElementById("copiedMessage").style.display = "block";
 };
 
 function embed() {
-    document.getElementById("shareContent").innerHTML = `Embed code: <code id="shareCode" class="code">&lt;iframe src="https://editor.nicholaslim.me/share/..." width="649" height="350"&gt;&lt;/iframe&gt;</code>`;
+    document.getElementById("shareContent").innerHTML = `<p>Embed code: </p><code id="shareCode">&lt;iframe src="${shareURL}" title="Nicholas' Code Editor" width="649" height="350"&gt;&lt;/iframe&gt;</code>`;
     document.getElementById("copy").textContent = "Copy full code";
     document.getElementById("copy").onclick = copyHTML;
     document.getElementById("generate").textContent = "Generate sharing URL";
@@ -230,5 +230,5 @@ if (window.screen.width < 600) {
     document.getElementById("renderHTML").textContent = "Render HTML";
     document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
     <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
-    <p>v0.0.7</p>`
-}
+    <p>v0.0.8</p>`;
+};

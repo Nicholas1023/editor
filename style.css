@@ -78,7 +78,7 @@ button:hover, .button:hover {
     flex: 1;
 }
 
-.message, .message-cookies {
+.message, .message-legal {
     flex: 1;
     z-index: 1000;
     position: fixed;
@@ -110,11 +110,11 @@ button:hover, .button:hover {
 
 .message code { color: black; }
 
-.message-cookies { display: flex; }
+.message-legal { display: flex; }
 
 .message { display: none; }
 
-.message *, .message-cookies * { padding: 5px; }
+.message *, .message-legal * { padding: 5px; }
 
 .errorpage {
     display: flex;

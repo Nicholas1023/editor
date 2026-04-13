@@ -8,4 +8,3 @@ const query = new URLSearchParams(window.location.search);
 let code = Uint8Array.fromBase64(query.get("code").replaceAll("-", "+").replaceAll("_", "/"));
 const decoder = new TextDecoder("UTF-8");
 document.getElementById("code").value = decoder.decode(code);
-render();

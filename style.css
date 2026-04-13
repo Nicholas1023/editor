@@ -91,6 +91,14 @@ button:hover, .button:hover {
     margin-top: 5px;
 }
 
+.message1 {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
 #shareCode {
     max-width: 50ch;
     overflow-x: auto;

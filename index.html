@@ -40,12 +40,15 @@
                 <button style="padding: 5px 15px; margin: 0 10px;" onclick="check(true, 'template')">Yes</button>
                 <button style="padding: 5px 15px;" onclick="check(false, 'template')">No</button>
             </div>
-            <div id="share" class="message">
-                <div id="shareContent" style="display: flex; align-items: center;"><code id="shareCode"></code></div>
-                <p id="copiedMessage" style="display: none; color: #009b00;">Copied!</p>
-                <button style="padding: 5px 15px; margin: 0 10px;" id="copy" onclick="copyURL()"></button>
-                <button style="padding: 5px 15px; margin-right: 10px;" id="generate" onclick="embed()"></button>
-                <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = document.getElementById('copiedMessage').style.display = 'none'">OK</button>
+            <div id="share" class="message" style="flex-direction: column;">
+                <b>Notice: All share URLs have JS disabled for security reasons.</b>
+                <div class="message1">
+                    <div id="shareContent" style="display: flex; align-items: center;"><code id="shareCode"></code></div>
+                    <p id="copiedMessage" style="display: none; color: #009b00;">Copied!</p>
+                    <button style="padding: 5px 15px; margin: 0 10px;" id="copy" onclick="copyURL()"></button>
+                    <button style="padding: 5px 15px; margin-right: 10px;" id="generate" onclick="embed()"></button>
+                    <button style="padding: 5px 15px;" onclick="document.getElementById('share').style.display = document.getElementById('copiedMessage').style.display = 'none'">OK</button>
+                </div>
             </div>
             <div id="cookies" class="message-cookies">
                 <p><b>&#127850; Cookies Notice:</b>We use cookies to store your theme (dark/light) and cookie preferences.</p>

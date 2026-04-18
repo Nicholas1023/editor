@@ -1,0 +1,23 @@
+{
+    "name": "Nicholas' Code Editor",
+    "description": "Share and view rendered HTML files from your browser.",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#01294d",
+    "background_color": "#01294d",
+    "icons": [
+        {
+            "src": "icon.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "wide-screen.png",
+            "type": "image/png",
+            "form_factor": "wide",
+            "sizes": "1070x493"
+        }
+    ]
+}

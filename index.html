@@ -4,10 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="application-name" content="Nicholas' Code Editor" lang="en">
-        <meta name="theme-color" content="#9fd2fb">
+        <meta name="description" content="Nicholas' Code Editor - A simple HTML editor web app with an iframe renderer, open/save file, boilerplate HTML code insertion and sharing function.">
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#9fd2fb">
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#01294d">
         <title>Nicholas' Code Editor</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="manifest" href="manifest.json">
+        <link rel="manifest" href="manifest-dark.json">
         <link rel="icon" href="icon.png">
         <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
     </head>
@@ -51,9 +53,9 @@
                 </div>
             </div>
             <div id="cookies" class="message-legal">
-                <p><b>&#127850; Cookies Notice:</b>We use cookies to store your theme (dark/light) and cookie preferences.</p>
-                <button style="padding: 5px 15px; margin: 0 10px;" onclick="allowCookies()">I accept &#127850;</button>
-                <button style="padding: 5px 15px;" onclick="disallowCookies()">Do not use cookies &#128683;</button>
+                <p><b>Cookies Notice:</b>We use cookies to store your theme (dark/light) and cookie preferences.</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="allowCookies()">Use cookies</button>
+                <button style="padding: 5px 15px;" onclick="disallowCookies()">Do not use cookies</button>
             </div>
             <div id="mobile" class="message">
                 <p>Mobile devices currently have limited features. For full experience, please use a desktop.</p>
@@ -70,7 +72,7 @@
                 <p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
                 <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
                 <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
-                <p>Version 0.0.8</p>
+                <p>Version 0.0.9</p>
             </div>
         </footer>
         <script src="script.js"></script>

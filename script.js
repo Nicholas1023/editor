@@ -17,6 +17,14 @@ if (localStorage.getItem("cookies")) {
     document.getElementById("cookies").style.display = "none";
 };
 
+if (localStorage.getItem("theme") != "dark" && localStorage.getItem("theme") != "light") {
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        theme("dark");
+    } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        theme("light");
+    }
+};
+
 if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.getItem("theme") == "dark") {
     theme("systemdark");
 } else if (window.matchMedia("(prefers-color-scheme: light").matches && localStorage.getItem("theme") == "light") {
@@ -29,9 +37,7 @@ if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.get
     theme("dark");
 } else if (localStorage.getItem("theme") == "light") {
     theme("light");
-} else {
-    theme("light");
-};
+} 
 
 document.getElementById("code").value = template;
 
@@ -131,6 +137,7 @@ function generateShareURL() {
     document.getElementById("shareContent").innerHTML = `<p>Sharing URL: </p><code id="shareCode">https://editor.nicholaslim.me/share/?code=${codeBase64}</code>`;
     document.getElementById("copiedMessage").style.display = "none";
     document.getElementById("share").style.display = "flex";
+    console.log(`https://editor.nicholaslim.me/share/?code=${codeBase64}`);
 };
 
 function copyURL() {
@@ -154,6 +161,7 @@ function embed() {
 
 function theme(theme, cookies) {
     if (theme == "dark" || theme == "systemdark") {
+        document.querySelector("link[rel='manifest']").setAttribute("href", "manifest-dark.json")
         document.getElementById("nav").style.backgroundColor =
         document.getElementById("footer").style.backgroundColor =
         document.getElementById("cookies").style.backgroundColor = "#01294d";
@@ -169,6 +177,7 @@ function theme(theme, cookies) {
             m.style.color = "white";
         });
     } else if (theme == "light" || theme == "systemlight") {
+        document.querySelector("link[rel='manifest']").setAttribute("href", "manifest.json")
         document.getElementById("nav").style.backgroundColor =
         document.getElementById("footer").style.backgroundColor =
         document.getElementById("cookies").style.backgroundColor = "#9fd2fb";
@@ -194,8 +203,10 @@ function theme(theme, cookies) {
 function changeTheme() {
     if (localStorage.getItem("theme") == "dark") {
         theme("light");
+        console.log("Theme changed to light mode!");
     } else if (localStorage.getItem("theme") == "light") {
         theme("dark");
+        console.log("Theme changed to dark mode!");
     };
 };
 
@@ -230,5 +241,12 @@ if (window.screen.width < 600) {
     document.getElementById("renderHTML").textContent = "Render HTML";
     document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
     <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
-    <p>v0.0.8</p>`;
+    <p>v0.0.9</p>`;
 };
+
+// Console
+console.log("Welcome to Nicholas' Code Editor! From here, you can run a few commands. Enter 'help()' to see a list!");
+
+function help() {
+    console.log("changeTheme(): Switches the theme of the editor.\ngenerateShareURL(): Logs the share URL to the console.\nhelp(): Logs this message.\nrender(): Renders the code in the editor.");
+}

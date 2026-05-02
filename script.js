@@ -19,25 +19,20 @@ if (localStorage.getItem("cookies")) {
 
 if (localStorage.getItem("theme") != "dark" && localStorage.getItem("theme") != "light") {
     if (window.matchMedia("(prefers-color-scheme: dark").matches) {
-        theme("dark");
+        theme("dark", false);
     } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        theme("light", false);
+    }
+    console.log("He")
+} else {
+    if (localStorage.getItem("theme") == "dark") {
+        theme("dark");
+    } else if (localStorage.getItem("theme") == "light") {
+        theme("light");
+    } else {
         theme("light");
     }
 };
-
-if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.getItem("theme") == "dark") {
-    theme("systemdark");
-} else if (window.matchMedia("(prefers-color-scheme: light").matches && localStorage.getItem("theme") == "light") {
-    theme("systemlight");
-} else if (window.matchMedia("(prefers-color-scheme: dark").matches && localStorage.getItem("theme") == "light") {
-    theme("light");
-} else if (window.matchMedia("(prefers-color-scheme: light").matches && localStorage.getItem("theme") == "dark") {
-    theme("dark");
-} else if (localStorage.getItem("theme") == "dark") {
-    theme("dark");
-} else if (localStorage.getItem("theme") == "light") {
-    theme("light");
-} 
 
 document.getElementById("code").value = template;
 
@@ -160,7 +155,7 @@ function embed() {
 };
 
 function theme(theme, cookies) {
-    if (theme == "dark" || theme == "systemdark") {
+    if (theme == "dark") {
         document.querySelector("link[rel='manifest']").setAttribute("href", "manifest-dark.json")
         document.getElementById("nav").style.backgroundColor =
         document.getElementById("footer").style.backgroundColor =
@@ -176,7 +171,7 @@ function theme(theme, cookies) {
             m.style.backgroundColor = "#01294d";
             m.style.color = "white";
         });
-    } else if (theme == "light" || theme == "systemlight") {
+    } else if (theme == "light") {
         document.querySelector("link[rel='manifest']").setAttribute("href", "manifest.json")
         document.getElementById("nav").style.backgroundColor =
         document.getElementById("footer").style.backgroundColor =
@@ -193,9 +188,9 @@ function theme(theme, cookies) {
             m.style.color = "black";
         });
     };
-    if (theme == "dark" && localStorage.getItem("cookies") && cookies != false) {
+    if (theme == "dark" && cookies != false) {
         localStorage.setItem("theme", "dark");
-    } else if (theme == "light" && localStorage.getItem("cookies") && cookies != false) {
+    } else if (theme == "light" && cookies != false) {
         localStorage.setItem("theme", "light");
     };
 };
@@ -207,7 +202,7 @@ function changeTheme() {
     } else if (localStorage.getItem("theme") == "light") {
         theme("dark");
         console.log("Theme changed to dark mode!");
-    };
+    }
 };
 
 function disallowCookies() {
@@ -215,11 +210,20 @@ function disallowCookies() {
     document.getElementById("cookies").style.display = "none";
     localStorage.removeItem("theme");
     localStorage.removeItem("cookies");
-    theme("light", false);
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        theme("dark", false);
+    } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        theme("light", false);
+    } 
 };
 
 function allowCookies() {
     localStorage.setItem("cookies", true);
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        localStorage.setItem("theme", "dark");
+    } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        localStorage.setItem("theme", "light");
+    };
     document.getElementById("themeButton").style.display = "inline";
     document.getElementById("cookies").style.display = "none";
     window.location.reload();
@@ -241,7 +245,7 @@ if (window.screen.width < 600) {
     document.getElementById("renderHTML").textContent = "Render HTML";
     document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
     <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
-    <p>v0.0.9</p>`;
+    <p>v0.0.10</p>`;
 };
 
 // Console

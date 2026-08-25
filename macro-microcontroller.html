@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nicholas' Code Editor - Macro Microcontroller BASIC</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="manifest" href="manifest-dark.json">
+        <link rel="icon" href="icon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <nav id="nav">
+            <h2 style="margin-left: 5px;">Macro Microcontroller BASIC Web Editor</h2>
+            <div class="menu">
+                <div>
+                    <input type="file" accept=".bas,.txt" style="display: none;" id="fileSelect">
+                    <button id="openFile" onclick="document.getElementById('fileSelect').click()">Open file ^O</button>
+                    <button id="saveFile" onclick="saveFile()">Save file ^S</button>
+                    <button id="clearCode" onclick="document.getElementById('clear').style.display = 'flex'">Clear code</button>
+                </div>
+                <div>
+                    <button id="themeButton" onclick="changeTheme()"></button>
+                    <button id="runSim" onclick="runSim()">Run simulator ^R</button>
+                    <button id="runDevice" onclick="connectDevice()">Connect device</button>
+                </div>
+            </div>
+        </nav>
+        <div style="width: 100dvw; display: flex; justify-content: center;">
+            <div id="clear" class="message">
+                <p>Are you sure about clearing the editor?</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="check(true, 'clear')">Yes</button>
+                <button style="padding: 5px 15px;" onclick="check(false, 'clear')">No</button>
+            </div>
+            <div id="cookies" class="message-legal">
+                <p><b>Cookies Notice:</b>We use cookies to store your theme (dark/light) and cookie preferences.</p>
+                <button style="padding: 5px 15px; margin: 0 10px;" onclick="allowCookies()">Use cookies</button>
+                <button style="padding: 5px 15px;" onclick="disallowCookies()">Do not use cookies (Defaults to system theme)</button>
+            </div>
+            <div id="mobile" class="message">
+                <p>Mobile devices currently have limited features. For full experience, please use a desktop.</p>
+                <button style="padding: 5px 15px;" onclick="document.getElementById('mobile').style.display = 'none'">OK</button>
+            </div>
+        </div>
+        <div class="edit" id="edit">
+            <textarea id="code" spellcheck="false" placeholder="Enter your code here..."></textarea>
+            <svg viewBox="0 0 482.5 272.5" id="renderer">
+                <rect width="482.5" height="177.5" fill="green" rx="10" ry="10" x="50%" y="50%" transform="translate(-241.25, -88.75)"></rect>
+                <circle id="LED3" cx="172.5" cy="80" r="12.5" fill="darkred"></circle>
+                <circle id="LED2" cx="205" cy="80" r="12.5" fill="darkred"></circle>
+                <circle id="LED1" cx="237.5" cy="80" r="12.5" fill="darkred"></circle>
+                <circle id="BELL" cx="300" cy="82.5" r="30" fill="black"></circle>
+                <circle cx="300" cy="82.5" r="5" fill="grey"></circle>
+                <rect id="LED3" width="95" height="95" fill="lightgrey" x="7.5" y="120"></rect>
+                <rect id="LED2" width="95" height="95" fill="lightgrey" x="110" y="120"></rect>
+                <rect id="LED1" width="95" height="95" fill="lightgrey" x="212.5" y="120"></rect>
+                <g>
+                    <rect width="100" height="50" fill="#009e25" x="25" y="52.5"></rect>
+                    <text x="25" y="77" font-size="32" fill="gold">Macro</text>
+                    <text x="27" y="89" font-size="13" fill="white">Microcontroller</text>
+                    <text x="27" y="100" font-size="13" fill="white">Rev 2</text>
+                </g>
+                <rect width="37.5" height="22.5" fill="lightgrey" x="415" y="45"></rect>
+                <rect width="36" height="36" fill="black" x="400" y="100"></rect>
+                <rect width="45" height="70" fill="black" x="400" y="180"></rect>
+                <rect width="65" height="13.5" fill="black" x="320" y="200"></rect>
+                <rect width="26.5" height="13.5" fill="black" x="365" y="180"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="325" y="205"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="335" y="205"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="345" y="205"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="355" y="205"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="365" y="205"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="375" y="205"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="370" y="185"></rect>
+                <rect width="3" height="3" fill="lightgrey" x="380" y="185"></rect>
+            </svg>
+        </div>
+        <footer id="footer" style="flex-direction: column; display: flex; padding: 5px 10px; font-size: small; bottom: 0; text-align: start;">
+            <p id="userAgent"></p>
+            <div id="footerContent" style="display: flex; flex-direction: row; justify-content: space-between;">
+                <p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
+                <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
+                <a class="footer-a" href="index.html">Back to HTML Editor</a>
+                <button class="footer-a" id="cookies-a" onclick="document.getElementById('cookies').style.display = 'flex'">Cookie Preferences</button>
+                <p>Version 0.0.11</p>
+            </div>
+        </footer>
+        <script src="macro-microcontroller.js"></script>
+    </body>
+</html>

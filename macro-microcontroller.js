@@ -1,0 +1,238 @@
+let dirty = false;
+
+document.getElementById("fileSelect").addEventListener("change", function(e) {
+    dirty = false;
+    list = e.target
+    file = e.target.files[0];
+    const read = new FileReader();
+    read.onload = function(f) {
+        let filecontent = f.target.result;
+        document.getElementById("code").value = filecontent;
+    };
+    read.readAsText(file);
+    list.value = "";
+});
+
+function saveFile() {
+    dirty = false;
+    let download = URL.createObjectURL(new Blob([document.getElementById("code").value], { type: "text/plain" }));
+    const file = document.createElement("a")
+    file.style.display = "none";
+    file.href = download;
+    file.id = "fileDownload";
+    file.download = "file.bas";
+    document.getElementById("edit").appendChild(file);
+    document.getElementById("fileDownload").click();
+    document.getElementById("edit").removeChild(file);
+    URL.revokeObjectURL(download);
+};
+
+
+function check(buttonInput, action) {
+    if (buttonInput == true && action == "clear") {
+        document.getElementById("code").value = "";
+    }
+    document.getElementById("clear").style.display = "none";
+}
+
+document.getElementById("code").addEventListener("keydown", function(e) {
+    if (e.key == "Tab") {
+        e.preventDefault();
+        const start = this.selectionStart;
+        tab = "  ";
+        this.value = this.value.substring(0, start) + tab + this.value.substring(this.selectionEnd);
+        this.selectionStart, this.selectionEnd = start + 2;
+    };
+});
+
+document.addEventListener("keydown", function(e) {
+    if (e.ctrlKey && e.key == "s") {
+        e.preventDefault();
+        saveFile();
+    } else if (e.ctrlKey && e.key == "o") {
+        e.preventDefault();
+        document.getElementById('fileSelect').click();
+    } else if (e.ctrlKey && e.key == "r") {
+        e.preventDefault();
+        runSim();
+    };
+});
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function runSim() {
+    let code = document.getElementById("code").value;
+    let lowerCode = code.toLowerCase();
+    let lines = lowerCode.split(/\r?\n/);
+    for (const line of lines) {
+        if (line == "gpio led1") {
+            document.getElementById("LED1").style.fill = "red";
+            await sleep(1000);
+            document.getElementById("LED1").style.fill = "darkred";
+        } else if (line == "gpio led2") {
+            document.getElementById("LED2").style.fill = "red";
+            await sleep(1000);
+            document.getElementById("LED2").style.fill = "darkred";
+        } else if (line == "gpio led3") {
+            document.getElementById("LED3").style.fill = "red";
+            await sleep(1000);
+            document.getElementById("LED3").style.fill = "darkred";
+        }
+    }
+}
+
+let port;
+
+async function connectDevice() {
+    try {
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 9600 });
+        const runDevice = document.getElementById("runDevice");
+        runDevice.textContent = "Run on device";
+        runDevice.onclick = sendDevice;
+        sendDevice();
+    } catch (error) {
+    }
+}
+
+async function sendDevice() {
+    const writer = port.writable.getWriter();
+    const encoder = new TextEncoder();
+    try {
+        const code = document.getElementById("code").value;
+        await writer.write(encoder.encode(code + "\n"));
+    } finally {
+        writer.releaseLock();
+    }
+}
+
+if (navigator.userAgent) {
+    document.getElementById("userAgent").textContent = `User agent: ${navigator.userAgent}`;
+} else {
+    document.getElementById("userAgent").textContent = "User agent data not available.";
+};
+
+window.addEventListener("beforeunload", function(e) {
+    if (dirty) {
+        e.preventDefault();
+        e.returnValue = "";
+    }
+});
+
+document.getElementById("code").addEventListener("input", function(e) {
+    dirty = true;
+});
+
+if (localStorage.getItem("cookies")) {
+    document.getElementById("cookies").style.display = "none";
+};
+
+if (localStorage.getItem("theme") != "dark" && localStorage.getItem("theme") != "light") {
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        theme("dark", false);
+    } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        theme("light", false);
+    }
+} else {
+    if (localStorage.getItem("theme") == "dark") {
+        theme("dark");
+    } else if (localStorage.getItem("theme") == "light") {
+        theme("light");
+    } else {
+        theme("light");
+    }
+};
+
+function theme(theme, cookies) {
+    if (theme == "dark") {
+        document.querySelector("link[rel='manifest']").setAttribute("href", "manifest-dark.json")
+        document.getElementById("nav").style.backgroundColor =
+        document.getElementById("footer").style.backgroundColor =
+        document.getElementById("cookies").style.backgroundColor = "#01294d";
+        document.getElementById("nav").style.color =
+        document.getElementById("footer").style.color =
+        document.getElementById("cookies").style.color = "white";
+        document.getElementById("themeButton").textContent = "Light Mode";
+        document.querySelectorAll(".footer-a").forEach(function(a) {
+            a.style.color = "#9fd2fb";
+        });
+        document.querySelectorAll(".message").forEach(function(m) {
+            m.style.backgroundColor = "#01294d";
+            m.style.color = "white";
+        });
+    } else if (theme == "light") {
+        document.querySelector("link[rel='manifest']").setAttribute("href", "manifest.json")
+        document.getElementById("nav").style.backgroundColor =
+        document.getElementById("footer").style.backgroundColor =
+        document.getElementById("cookies").style.backgroundColor = "#9fd2fb";
+        document.getElementById("nav").style.color =
+        document.getElementById("footer").style.color =
+        document.getElementById("cookies").style.color = "black";
+        document.getElementById("themeButton").textContent = "Dark Mode";
+        document.querySelectorAll(".footer-a").forEach(function(a) {
+            a.style.color = "#0000a0";
+        });
+        document.querySelectorAll(".message").forEach(function(m) {
+            m.style.backgroundColor = "#9fd2fb";
+            m.style.color = "black";
+        });
+    };
+    if (theme == "dark" && cookies != false) {
+        localStorage.setItem("theme", "dark");
+    } else if (theme == "light" && cookies != false) {
+        localStorage.setItem("theme", "light");
+    };
+};
+
+function changeTheme() {
+    if (localStorage.getItem("theme") == "dark") {
+        theme("light");
+        console.log("Theme changed to light mode!");
+    } else if (localStorage.getItem("theme") == "light") {
+        theme("dark");
+        console.log("Theme changed to dark mode!");
+    }
+};
+
+function disallowCookies() {
+    document.getElementById("themeButton").style.display = "none";
+    document.getElementById("cookies").style.display = "none";
+    localStorage.removeItem("theme");
+    localStorage.removeItem("cookies");
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        theme("dark", false);
+    } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        theme("light", false);
+    } 
+};
+
+function allowCookies() {
+    localStorage.setItem("cookies", true);
+    if (window.matchMedia("(prefers-color-scheme: dark").matches) {
+        localStorage.setItem("theme", "dark");
+    } else if (window.matchMedia("(prefers-color-scheme: light").matches) {
+        localStorage.setItem("theme", "light");
+    };
+    document.getElementById("themeButton").style.display = "inline";
+    document.getElementById("cookies").style.display = "none";
+    window.location.reload();
+};
+
+if (window.screen.width < 600) {
+    localStorage.removeItem("theme");
+    localStorage.removeItem("cookies");
+    document.getElementById("nav").style.justifyContent = "flex-start"; 
+    document.getElementById("mobile").style.display = "flex"; 
+    document.getElementById("cookies").style.display =
+    document.getElementById("openFile").style.display =
+    document.getElementById("saveFile").style.display =
+    document.getElementById("clearCode").style.display =
+    document.getElementById("addTemplate").style.display =
+    document.getElementById("shareEmbed").style.display =
+    document.getElementById("themeButton").style.display =
+    document.getElementById("userAgent").style.display = "none";
+    document.getElementById("renderHTML").textContent = "Render HTML";
+    document.getElementById("footerContent").innerHTML = `<p>&copy; 2026 Nicholas Lim. <a class="footer-a" href="LICENSE.txt" target="_blank">View license</a>.</p>
+    <a class="footer-a" href="https://github.com/Nicholas1023/editor" target="_blank">View Repository (Nicholas1023/editor)</a>
+    <p>v0.0.10</p>`;
+};

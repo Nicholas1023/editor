@@ -141,12 +141,12 @@ function copyURL() {
 };
 
 function copyHTML() {
-    navigator.clipboard.writeText(`<iframe src="${shareURL}" title="Nicholas' Code Editor" width="649" height="350"></iframe>`);
+    navigator.clipboard.writeText(`<iframe src="${shareURL}" title="Nicholas' Code Editor" width="649" height="350" loading="lazy"></iframe>`);
     document.getElementById("copiedMessage").style.display = "block";
 };
 
 function embed() {
-    document.getElementById("shareContent").innerHTML = `<p>Embed code: </p><code id="shareCode">&lt;iframe src="${shareURL}" title="Nicholas' Code Editor" width="649" height="350"&gt;&lt;/iframe&gt;</code>`;
+    document.getElementById("shareContent").innerHTML = `<p>Embed code: </p><code id="shareCode">&lt;iframe src="${shareURL}" title="Nicholas' Code Editor" width="649" height="350" loading="lazy"&gt;&lt;/iframe&gt;</code>`;
     document.getElementById("copy").textContent = "Copy full code";
     document.getElementById("copy").onclick = copyHTML;
     document.getElementById("generate").textContent = "Generate sharing URL";
